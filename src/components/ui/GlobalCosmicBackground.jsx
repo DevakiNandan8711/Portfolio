@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Sparkles, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import { getTheme } from '../../themeConfig';
+import { CanvasErrorBoundary } from './CanvasErrorBoundary';
 
 /* Helper to generate a soft circular astronomical star texture so points are never square boxes */
 let _cachedStarTexture = null;
@@ -343,11 +344,11 @@ export default function GlobalCosmicBackground({ currentTheme = 'orbital_sunrise
       <div 
         className="absolute bottom-0 left-0 w-[700px] h-[700px] rounded-full blur-[180px] opacity-[0.04] pointer-events-none transition-all duration-1000 bg-indigo-950"
       />
-
-      <Canvas
-        camera={{ position: [0, 0, 14], fov: 48 }}
-        gl={{
-          antialias: true,
+      <CanvasErrorBoundary fallback={<div className="fixed inset-0 bg-[#020308] z-0" />}>
+        <Canvas
+          camera={{ position: [0, 0, 14], fov: 48 }}
+          gl={{
+            antialias: true,
           alpha: true,
           powerPreference: 'high-performance',
           toneMapping: THREE.ACESFilmicToneMapping,
@@ -376,7 +377,8 @@ export default function GlobalCosmicBackground({ currentTheme = 'orbital_sunrise
           fade
           speed={1.6}
         />
-      </Canvas>
+        </Canvas>
+      </CanvasErrorBoundary>
     </div>
   );
 }

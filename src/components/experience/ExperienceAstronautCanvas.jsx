@@ -4,6 +4,7 @@ import { useGLTF, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { getTheme } from '../../themeConfig';
+import { CanvasErrorBoundary } from '../ui/CanvasErrorBoundary';
 
 /**
  * 3D Spacewalk Astronaut Model with Skinned Clone and Floating Animation
@@ -195,7 +196,8 @@ export default function ExperienceAstronautCanvas({ currentTheme = 'orbital_sunr
 
   return (
     <div className="relative w-full h-full min-h-[460px] sm:min-h-[520px] lg:min-h-[620px] bg-transparent">
-      <Canvas
+      <CanvasErrorBoundary>
+        <Canvas
         camera={{ position: [0, 0.1, 3.4], fov: 42 }}
         dpr={[1, 1.5]}
         gl={{
@@ -228,7 +230,8 @@ export default function ExperienceAstronautCanvas({ currentTheme = 'orbital_sunr
             enableDamping={true}
           />
         </Suspense>
-      </Canvas>
+        </Canvas>
+      </CanvasErrorBoundary>
     </div>
   );
 }

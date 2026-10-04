@@ -16,6 +16,9 @@ export class CanvasErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
+      if (this.props.fallback !== undefined) {
+        return this.props.fallback;
+      }
       // Fallback UI when WebGL crashes on mobile due to memory limits
       return (
         <div className="w-full h-full flex flex-col items-center justify-center bg-[#020308] border border-white/10 rounded-2xl p-6 text-center">
