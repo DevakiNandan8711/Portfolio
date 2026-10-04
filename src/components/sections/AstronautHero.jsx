@@ -663,6 +663,20 @@ export default function AstronautHero({
 }) {
   const activeTheme = getTheme(currentTheme);
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(true);
+  const sectionRef = useRef(null);
+
+  // Unmount heavy 3D rendering when scrolled out of view to save battery and heat
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.01 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // Mouse parallax for the background vista (creates realistic 3D depth)
   useEffect(() => {
@@ -676,7 +690,7 @@ export default function AstronautHero({
   }, []);
 
   return (
-    <section id="home" className="snap-section relative w-full h-screen flex flex-col md:flex-row items-center justify-between px-5 sm:px-10 md:px-16 pt-24 pb-12 sm:pt-28 sm:pb-16 md:py-0 overflow-hidden select-none font-sans">
+    <section id="home" ref={sectionRef} className="snap-section relative w-full h-screen flex flex-col md:flex-row items-center justify-between px-5 sm:px-10 md:px-16 pt-24 pb-12 sm:pt-28 sm:pb-16 md:py-0 overflow-hidden select-none font-sans">
 
       {/* ── 0. BREATHTAKING PHOTOREALISTIC ORBITAL VISTA BACKGROUND (With Continuous Zero-G Flight & Parallax) ── */}
       <div 
@@ -742,8 +756,9 @@ export default function AstronautHero({
         className="absolute inset-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing z-10"
         style={{ touchAction: 'pan-y' }}
       >
-        <CanvasErrorBoundary>
-          <Canvas
+        {isVisible && (
+          <CanvasErrorBoundary>
+            <Canvas
             camera={{ position: [0, -0.05, 4.5], fov: 45 }}
             gl={{
             antialias: true,
@@ -809,8 +824,9 @@ export default function AstronautHero({
           <Suspense fallback={null}>
             <AstronautModel onReady={onModelLoaded} isLoaded={isLoaded} />
           </Suspense>
-          </Canvas>
-        </CanvasErrorBoundary>
+            </Canvas>
+          </CanvasErrorBoundary>
+        )}
       </div>
 
       {/* 3. Right / Bottom Column: Roles & Action */}

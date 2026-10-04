@@ -93,43 +93,44 @@ export default function Project3DPanel({
 
   return (
     <div className="relative w-full h-full min-h-[260px] sm:min-h-[380px] lg:min-h-[480px] rounded-3xl overflow-hidden bg-transparent group">
-      {/* Three.js Shared Canvas with Transparent Canvas for Seamless Cosmic Background */}
-      <CanvasErrorBoundary>
-        <Canvas
-          camera={{ position: [0, 0, 4.4], fov: 45 }}
-          dpr={[1, 1.2]}
-          gl={{
-            antialias: true,
-            alpha: true,
-            powerPreference: 'default'
-          }}
-          className="w-full h-full cursor-grab active:cursor-grabbing bg-transparent"
-        >
-        <Suspense fallback={null}>
-          <SharedSpaceBackground isLowEnd={isLowEnd} prefersReducedMotion={prefersReducedMotion} />
+      {isSectionVisible && (
+        <CanvasErrorBoundary>
+          <Canvas
+            camera={{ position: [0, 0, 4.4], fov: 45 }}
+            dpr={[1, 1.2]}
+            gl={{
+              antialias: true,
+              alpha: true,
+              powerPreference: 'default'
+            }}
+            className="w-full h-full cursor-grab active:cursor-grabbing bg-transparent"
+          >
+          <Suspense fallback={null}>
+            <SharedSpaceBackground isLowEnd={isLowEnd} prefersReducedMotion={prefersReducedMotion} />
 
-          <SceneSwitcher
-            activeIndex={activeIndex}
-            texture={texture}
-            isReady={isReady}
-            prefersReducedMotion={prefersReducedMotion}
-            isLowEnd={isLowEnd}
-          />
+            <SceneSwitcher
+              activeIndex={activeIndex}
+              texture={texture}
+              isReady={isReady}
+              prefersReducedMotion={prefersReducedMotion}
+              isLowEnd={isLowEnd}
+            />
 
-          <OrbitControls
-            enableZoom={false}
-            enablePan={false}
-            minAzimuthAngle={-Math.PI / 4}
-            maxAzimuthAngle={Math.PI / 4}
-            minPolarAngle={Math.PI / 3}
-            maxPolarAngle={Math.PI / 1.8}
-            autoRotate={!prefersReducedMotion}
-            autoRotateSpeed={0.7}
-            dampingFactor={0.06}
-          />
-        </Suspense>
-      </Canvas>
-      </CanvasErrorBoundary>
+            <OrbitControls
+              enableZoom={false}
+              enablePan={false}
+              minAzimuthAngle={-Math.PI / 4}
+              maxAzimuthAngle={Math.PI / 4}
+              minPolarAngle={Math.PI / 3}
+              maxPolarAngle={Math.PI / 1.8}
+              autoRotate={!prefersReducedMotion}
+              autoRotateSpeed={0.7}
+              dampingFactor={0.06}
+            />
+          </Suspense>
+        </Canvas>
+        </CanvasErrorBoundary>
+      )}
 
     </div>
   );
