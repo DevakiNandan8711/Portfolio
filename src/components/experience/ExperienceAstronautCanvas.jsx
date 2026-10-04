@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { getTheme } from '../../themeConfig';
 import { CanvasErrorBoundary } from '../ui/CanvasErrorBoundary';
+import { isMobileDevice } from '../../utils/deviceUtils';
 
 /**
  * 3D Spacewalk Astronaut Model with Skinned Clone and Floating Animation
@@ -185,7 +186,7 @@ export default function ExperienceAstronautCanvas({ currentTheme = 'orbital_sunr
     }
   }, []);
 
-  if (!hasWebGL) {
+  if (!hasWebGL || isMobileDevice()) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
         <span className="text-4xl mb-3">👨‍🚀</span>

@@ -4,6 +4,7 @@ import { useGLTF, useAnimations, Center } from '@react-three/drei';
 import * as THREE from 'three';
 import { CanvasErrorBoundary } from '../ui/CanvasErrorBoundary';
 import { getTheme, themes } from '../../themeConfig';
+import { isMobileDevice } from '../../utils/deviceUtils';
 
 /* ─────────────────────────────────────────────────────────────────────────────
    PHOTOREALISTIC ASTRONAUT MODEL COMPONENT (Zero-G Spacewalk EVA)
@@ -742,8 +743,9 @@ export default function AstronautHero({
         className="absolute inset-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing z-10"
         style={{ touchAction: 'pan-y' }}
       >
-        <CanvasErrorBoundary>
-          <Canvas
+        {!isMobileDevice() && (
+          <CanvasErrorBoundary>
+            <Canvas
             camera={{ position: [0, -0.05, 4.5], fov: 45 }}
             gl={{
             antialias: true,
@@ -809,7 +811,8 @@ export default function AstronautHero({
             <AstronautModel onReady={onModelLoaded} isLoaded={isLoaded} />
           </Suspense>
           </Canvas>
-        </CanvasErrorBoundary>
+          </CanvasErrorBoundary>
+        )}
       </div>
 
       {/* 3. Right / Bottom Column: Roles & Action */}
@@ -832,5 +835,7 @@ export default function AstronautHero({
   );
 }
 
-// Preload GLB model asset
-useGLTF.preload('/models/astronaut.glb');
+// Preload GLB model asset on desktop only to avoid mobile RAM crashes
+if (!isMobileDevice()) {
+  useGLTF.preload('/models/astronaut.glb');
+}
