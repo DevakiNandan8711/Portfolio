@@ -97,11 +97,11 @@ export default function Project3DPanel({
       <CanvasErrorBoundary>
         <Canvas
           camera={{ position: [0, 0, 4.4], fov: 45 }}
-          dpr={[1, 1.5]}
+          dpr={[1, 1.2]}
           gl={{
             antialias: true,
             alpha: true,
-            powerPreference: 'high-performance'
+            powerPreference: 'default'
           }}
           className="w-full h-full cursor-grab active:cursor-grabbing bg-transparent"
         >

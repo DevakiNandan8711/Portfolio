@@ -199,11 +199,11 @@ export default function ExperienceAstronautCanvas({ currentTheme = 'orbital_sunr
       <CanvasErrorBoundary>
         <Canvas
         camera={{ position: [0, 0.1, 3.4], fov: 42 }}
-        dpr={[1, 1.5]}
+        dpr={[1, 1.2]}
         gl={{
           antialias: true,
           alpha: true,
-          powerPreference: 'high-performance'
+          powerPreference: 'default'
         }}
         className="w-full h-full cursor-grab active:cursor-grabbing bg-transparent"
       >

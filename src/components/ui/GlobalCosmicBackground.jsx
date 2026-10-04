@@ -350,10 +350,11 @@ export default function GlobalCosmicBackground({ currentTheme = 'orbital_sunrise
           gl={{
             antialias: true,
           alpha: true,
-          powerPreference: 'high-performance',
+          powerPreference: 'default',
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.2
         }}
+        dpr={[1, 1.2]}
       >
         {/* Dynamic Space Observer Camera Movement */}
         <GlobalSpaceCameraRig scrollOffset={scrollOffset} />
@@ -371,7 +372,7 @@ export default function GlobalCosmicBackground({ currentTheme = 'orbital_sunrise
         <Stars
           radius={140}
           depth={80}
-          count={6000}
+          count={2500}
           factor={4}
           saturation={0.1}
           fade

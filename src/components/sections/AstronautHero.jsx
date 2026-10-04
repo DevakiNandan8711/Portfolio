@@ -748,10 +748,11 @@ export default function AstronautHero({
             gl={{
             antialias: true,
             alpha: true,
-            powerPreference: 'high-performance',
+            powerPreference: 'default',
             toneMapping: THREE.ACESFilmicToneMapping,
             toneMappingExposure: 1.25
           }}
+          dpr={[1, 1.2]}
         >
           {/* Spacewalk Zero-G Camera Float */}
           <SpacewalkCameraRig />
