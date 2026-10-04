@@ -737,7 +737,10 @@ export default function AstronautHero({
       </div>
 
       {/* 2. Center 3D Viewport: Moving Stars + Floating 3D Astronaut in front of Vista */}
-      <div className="absolute inset-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing z-10">
+      <div 
+        className="absolute inset-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing z-10"
+        style={{ touchAction: 'pan-y' }}
+      >
         <Canvas
           camera={{ position: [0, -0.05, 4.5], fov: 45 }}
           gl={{

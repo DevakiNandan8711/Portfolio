@@ -94,6 +94,7 @@ export default function SkillsSection({ currentTheme = 'orbital_sunrise' }) {
   const isDragging = useRef(false);
   const lastMousePos = useRef({ x: 0, y: 0 });
   const sphereRadius = useRef(260);
+  const [fontScale, setFontScale] = useState(13);
 
   // Compute Golden Spiral / Fibonacci Sphere coordinates on mount
   const baseCoords = useMemo(() => {
@@ -119,14 +120,20 @@ export default function SkillsSection({ currentTheme = 'orbital_sunrise' }) {
     const updateRadius = () => {
       if (typeof window === 'undefined') return;
       const width = window.innerWidth;
+      
+      // Prevent overlaps by sizing texts and radius correctly
       if (width < 450) {
-        sphereRadius.current = 135;
+        sphereRadius.current = 155;
+        setFontScale(9.5); // Smaller text on very small phones
       } else if (width < 640) {
-        sphereRadius.current = 160;
+        sphereRadius.current = 180;
+        setFontScale(11);
       } else if (width < 1024) {
-        sphereRadius.current = 215;
+        sphereRadius.current = 225;
+        setFontScale(12.5);
       } else {
-        sphereRadius.current = 275;
+        sphereRadius.current = 285;
+        setFontScale(13.5);
       }
     };
     updateRadius();
@@ -347,7 +354,7 @@ export default function SkillsSection({ currentTheme = 'orbital_sunrise' }) {
               onClick={() => setActiveCategory(skill.category)}
               className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-sans font-semibold tracking-tight transition-filter duration-200 cursor-pointer select-none"
               style={{
-                fontSize: `${Math.round(skill.weight * 13)}px`,
+                fontSize: `${Math.round(skill.weight * fontScale)}px`,
                 willChange: 'transform, opacity'
               }}
             >

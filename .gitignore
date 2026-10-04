@@ -28,11 +28,3 @@ dist-ssr
 .env.*
 !.env.example
 
-# Ignored personal and sensitive media
-public/devaki.jpg
-public/devaki.png
-public/videos/
-public/*.jpg
-public/*.png
-!public/favicon.svg
-public/icons/
