@@ -8,6 +8,7 @@
 export { default as Navbar } from './layout/Navbar';
 export { default as GlobalCosmicBackground } from './ui/GlobalCosmicBackground';
 export { default as CustomSpaceCursor } from './ui/CustomSpaceCursor';
+export { CanvasErrorBoundary } from './ui/CanvasErrorBoundary';
 export { default as OrbitalPreloader } from './layout/OrbitalPreloader';
 
 // Sections

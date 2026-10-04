@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import SharedSpaceBackground from './scenes/SharedSpaceBackground';
 import SceneSwitcher from './SceneSwitcher';
 import { useProjectVideo } from './useProjectVideo';
+import { CanvasErrorBoundary } from '../ui/CanvasErrorBoundary';
 
 // Test WebGL availability
 function checkWebGLSupport() {
@@ -72,9 +73,11 @@ export default function Project3DPanel({
 
   // Check hardware and WebGL support on mount
   useEffect(() => {
-    setHasWebGL(checkWebGLSupport());
     const isMobile = window.innerWidth < 768;
     const isWeakCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+    
+    // Disable WebGL video textures on mobile to prevent out-of-memory crashes
+    setHasWebGL(!isMobile && checkWebGLSupport());
     setIsLowEnd(isMobile || isWeakCpu);
   }, []);
 
@@ -92,16 +95,17 @@ export default function Project3DPanel({
   return (
     <div className="relative w-full h-full min-h-[260px] sm:min-h-[380px] lg:min-h-[480px] rounded-3xl overflow-hidden bg-transparent group">
       {/* Three.js Shared Canvas with Transparent Canvas for Seamless Cosmic Background */}
-      <Canvas
-        camera={{ position: [0, 0, 4.4], fov: 45 }}
-        dpr={[1, 1.5]}
-        gl={{
-          antialias: true,
-          alpha: true,
-          powerPreference: 'high-performance'
-        }}
-        className="w-full h-full cursor-grab active:cursor-grabbing bg-transparent"
-      >
+      <CanvasErrorBoundary>
+        <Canvas
+          camera={{ position: [0, 0, 4.4], fov: 45 }}
+          dpr={[1, 1.5]}
+          gl={{
+            antialias: true,
+            alpha: true,
+            powerPreference: 'high-performance'
+          }}
+          className="w-full h-full cursor-grab active:cursor-grabbing bg-transparent"
+        >
         <Suspense fallback={null}>
           <SharedSpaceBackground isLowEnd={isLowEnd} prefersReducedMotion={prefersReducedMotion} />
 
@@ -123,10 +127,10 @@ export default function Project3DPanel({
             autoRotate={!prefersReducedMotion}
             autoRotateSpeed={0.7}
             dampingFactor={0.06}
-            enableDamping
           />
         </Suspense>
       </Canvas>
+      </CanvasErrorBoundary>
 
     </div>
   );
