@@ -26,7 +26,7 @@ function checkWebGLSupport() {
  */
 function Fallback2DFrame({ project, prefersReducedMotion }) {
   const [videoError, setVideoError] = useState(false);
-  const targetSpeed = prefersReducedMotion ? 1.0 : (project.speed || 4.0);
+  const targetSpeed = prefersReducedMotion ? 1.0 : (project.speed || 2.0);
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-6 text-center bg-transparent">

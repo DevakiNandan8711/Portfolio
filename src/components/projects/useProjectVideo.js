@@ -60,7 +60,7 @@ export function useProjectVideo(project, isSectionVisible, prefersReducedMotion)
     video.setAttribute('playsinline', '');
     videoRef.current = video;
 
-    const targetSpeed = prefersReducedMotion ? 1 : (project.speed || 4);
+    const targetSpeed = prefersReducedMotion ? 1 : (project.speed || 2);
     const enforceSpeed = () => {
       if (video.playbackRate !== targetSpeed) {
         video.defaultPlaybackRate = targetSpeed;
@@ -143,7 +143,7 @@ export function useProjectVideo(project, isSectionVisible, prefersReducedMotion)
     if (!video) return;
 
     if (isSectionVisible && !document.hidden) {
-      const targetSpeed = prefersReducedMotion ? 1 : (project?.speed || 4);
+      const targetSpeed = prefersReducedMotion ? 1 : (project?.speed || 2);
       video.defaultPlaybackRate = targetSpeed;
       video.playbackRate = targetSpeed;
       video.play().catch(() => {});
