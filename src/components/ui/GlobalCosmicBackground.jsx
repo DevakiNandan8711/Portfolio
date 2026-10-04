@@ -4,7 +4,6 @@ import { Sparkles, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import { getTheme } from '../../themeConfig';
 import { CanvasErrorBoundary } from './CanvasErrorBoundary';
-import { isMobileDevice } from '../../utils/deviceUtils';
 
 /* Helper to generate a soft circular astronomical star texture so points are never square boxes */
 let _cachedStarTexture = null;
@@ -334,14 +333,6 @@ export default function GlobalCosmicBackground({ currentTheme = 'orbital_sunrise
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  if (isMobileDevice()) {
-    return (
-      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden bg-[#000104]">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900/40 via-[#000104] to-black opacity-80" />
-      </div>
-    );
-  }
 
   return (
     <div className="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden bg-[#000104]">

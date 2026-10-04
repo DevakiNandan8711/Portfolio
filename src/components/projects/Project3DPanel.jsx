@@ -73,11 +73,9 @@ export default function Project3DPanel({
 
   // Check hardware and WebGL support on mount
   useEffect(() => {
+    setHasWebGL(checkWebGLSupport());
     const isMobile = window.innerWidth < 768;
     const isWeakCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
-    
-    // Disable WebGL video textures on mobile to prevent out-of-memory crashes
-    setHasWebGL(!isMobile && checkWebGLSupport());
     setIsLowEnd(isMobile || isWeakCpu);
   }, []);
 
