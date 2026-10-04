@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: #020308;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Snap Section Utility */
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: none !important;
+  }
+  .snap-section {
+    scroll-snap-align: none !important;
+    min-height: auto;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #010104;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Smooth selection */
+::selection {
+  background: rgba(245, 158, 11, 0.3);
+  color: #ffffff;
+}
+
+/* Continuous Zero-G Majestic Planetary Orbital Flight Animation (Hero Vista) */
+@keyframes zeroGOrbitalFlight {
+  0% {
+    transform: scale(1.10) translate(0px, 0px) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.13) translate(-16px, -8px) rotate(0.35deg);
+  }
+  50% {
+    transform: scale(1.11) translate(-30px, 6px) rotate(-0.3deg);
+  }
+  75% {
+    transform: scale(1.14) translate(-12px, 12px) rotate(0.4deg);
+  }
+  100% {
+    transform: scale(1.10) translate(0px, 0px) rotate(0deg);
+  }
+}
+
+.orbital-flight-drift {
+  animation: zeroGOrbitalFlight 36s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Custom Space Reticle Cursor (Synchronized Central Point + Box) */
+@media (pointer: fine) {
+  html.custom-space-cursor-active,
+  html.custom-space-cursor-active *,
+  html.custom-space-cursor-active a,
+  html.custom-space-cursor-active button,
+  html.custom-space-cursor-active input,
+  html.custom-space-cursor-active textarea {
+    cursor: none !important;
+  }
+}
+
+
+
