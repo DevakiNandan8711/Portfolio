@@ -335,9 +335,10 @@ export default function GlobalCosmicBackground({ currentTheme = 'orbital_sunrise
   }, []);
 
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden bg-[#000104]">
-      
-      {/* Subtle deep space interstellar cold starlight veil (No artificial yellow/orange fog) */}
+    <div 
+      className="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden transition-colors duration-1000"
+      style={{ backgroundColor: activeTheme.bgCore }}
+    >
       <div 
         className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[180px] opacity-[0.06] pointer-events-none transition-all duration-1000 bg-sky-900"
       />

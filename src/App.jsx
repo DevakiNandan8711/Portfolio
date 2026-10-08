@@ -74,7 +74,10 @@ export default function App() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-[#020308] text-white selection:bg-amber-500/30">
+    <div 
+      className="relative w-full min-h-screen text-white selection:bg-amber-500/30 transition-colors duration-1000"
+      style={{ backgroundColor: activeTheme.bgCore }}
+    >
       
       {/* ────────────────────────────────────────────────────────────
           ORBITAL SYSTEMS LAUNCH PRELOADER
@@ -114,9 +117,9 @@ export default function App() {
 
         {/* Cinematic Deep Space Radial Vignette */}
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 transition-colors duration-1000"
           style={{
-            background: 'radial-gradient(ellipse at center, transparent 35%, rgba(2, 3, 8, 0.65) 80%, #020308 100%)',
+            background: `radial-gradient(ellipse at center, transparent 35%, ${activeTheme.bgCore}A6 80%, ${activeTheme.bgCore} 100%)`,
             boxShadow: 'inset 0 0 160px rgba(0,0,0,0.95)'
           }}
         />
