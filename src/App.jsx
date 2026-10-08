@@ -38,6 +38,9 @@ export default function App() {
       document.head.appendChild(metaThemeColor);
     }
     metaThemeColor.setAttribute('content', activeTheme.bgCore || '#020308');
+    
+    // Dynamically update body background color to ensure mobile overscroll bounce matches the theme
+    document.body.style.backgroundColor = activeTheme.bgCore;
   }, [activeTheme]);
 
   // Track active section during scroll
