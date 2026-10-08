@@ -64,7 +64,10 @@ export default function Navbar({
           1. DESKTOP NAVBAR (Pinned Floating Pill for md: and above)
           ──────────────────────────────────────────────────────────── */}
       <header className="fixed top-5 right-6 z-50 pointer-events-none hidden md:flex justify-end items-center">
-        <nav className="pointer-events-auto flex items-center gap-4 sm:gap-6 px-4 sm:px-6 py-2.5 rounded-full bg-[#070b16]/85 border border-white/10 backdrop-blur-xl shadow-[0_15px_35px_rgba(0,0,0,0.6)] transition-all duration-300">
+        <nav 
+          className="pointer-events-auto flex items-center gap-4 sm:gap-6 px-4 sm:px-6 py-2.5 rounded-full border border-white/10 backdrop-blur-xl shadow-[0_15px_35px_rgba(0,0,0,0.6)] transition-all duration-300"
+          style={{ backgroundColor: activeThemeObj.bgCore + 'D9' }}
+        >
           
           {/* Navigation Links */}
           <div className="flex items-center gap-3 sm:gap-5">
@@ -110,7 +113,10 @@ export default function Navbar({
 
               {/* Dropdown Menu */}
               {themeOpen && (
-                <div className="absolute top-full right-0 mt-2 w-48 py-1.5 rounded-xl bg-[#090e1c]/95 border border-white/15 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] flex flex-col z-50 animate-in fade-in zoom-in-95 duration-150">
+                <div 
+                  className="absolute top-full right-0 mt-2 w-48 py-1.5 rounded-xl border border-white/15 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] flex flex-col z-50 animate-in fade-in zoom-in-95 duration-150"
+                  style={{ backgroundColor: activeThemeObj.bgCore + 'F2' }}
+                >
                   {themes.map((t) => (
                     <button
                       key={t.id}
@@ -147,7 +153,10 @@ export default function Navbar({
       <header className="fixed top-3 left-3 right-3 z-50 md:hidden flex flex-col pointer-events-none" ref={mobileMenuRef}>
         
         {/* Top Control Bar */}
-        <div className="pointer-events-auto flex items-center justify-between px-4 py-2.5 rounded-2xl bg-[#070b16]/90 border border-white/15 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+        <div 
+          className="pointer-events-auto flex items-center justify-between px-4 py-2.5 rounded-2xl border border-white/15 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] transition-colors duration-300"
+          style={{ backgroundColor: activeThemeObj.bgCore + 'E6' }}
+        >
           
           {/* Brand Logo / Active Section Indicator */}
           <div className="flex items-center gap-2">
@@ -185,7 +194,10 @@ export default function Navbar({
 
         {/* Mobile Theme Selector Popup */}
         {themeOpen && (
-          <div className="pointer-events-auto mt-2 p-2 rounded-2xl bg-[#090e1c]/95 border border-white/15 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.9)] grid grid-cols-2 gap-1.5 animate-in fade-in zoom-in-95 duration-150">
+          <div 
+            className="pointer-events-auto mt-2 p-2 rounded-2xl border border-white/15 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.9)] grid grid-cols-2 gap-1.5 animate-in fade-in zoom-in-95 duration-150"
+            style={{ backgroundColor: activeThemeObj.bgCore + 'F2' }}
+          >
             {themes.map((t) => (
               <button
                 key={t.id}
@@ -208,7 +220,10 @@ export default function Navbar({
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <nav className="pointer-events-auto mt-2 p-3 rounded-2xl bg-[#070b16]/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.95)] flex flex-col gap-1 animate-in fade-in slide-in-from-top-3 duration-200">
+          <nav 
+            className="pointer-events-auto mt-2 p-3 rounded-2xl border border-white/15 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.95)] flex flex-col gap-1 animate-in fade-in slide-in-from-top-3 duration-200"
+            style={{ backgroundColor: activeThemeObj.bgCore + 'F2' }}
+          >
             {navLinks.map((item) => (
               <button
                 key={item}
