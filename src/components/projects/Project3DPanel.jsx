@@ -93,8 +93,7 @@ export default function Project3DPanel({
 
   return (
     <div className="relative w-full h-full min-h-[260px] sm:min-h-[380px] lg:min-h-[480px] rounded-3xl overflow-hidden bg-transparent group">
-      {isSectionVisible && (
-        <CanvasErrorBoundary>
+      <CanvasErrorBoundary>
           <Canvas
             camera={{ position: [0, 0, 4.4], fov: 45 }}
             dpr={[1, 1.2]}
@@ -130,7 +129,6 @@ export default function Project3DPanel({
           </Suspense>
         </Canvas>
         </CanvasErrorBoundary>
-      )}
 
     </div>
   );

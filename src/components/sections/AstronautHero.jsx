@@ -774,8 +774,7 @@ export default function AstronautHero({
         className="absolute inset-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing z-10"
         style={{ touchAction: 'pan-y' }}
       >
-        {isVisible && (
-          <CanvasErrorBoundary>
+        <CanvasErrorBoundary>
             <Canvas
               camera={{ position: [0, -0.05, 4.5], fov: 45 }}
               gl={{
@@ -844,7 +843,6 @@ export default function AstronautHero({
               </Suspense>
             </Canvas>
           </CanvasErrorBoundary>
-        )}
       </div>
 
       {/* 3. Right / Bottom Column: Roles & Action */}
