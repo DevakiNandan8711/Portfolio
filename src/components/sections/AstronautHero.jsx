@@ -5,12 +5,14 @@ import * as THREE from 'three';
 import { CanvasErrorBoundary } from '../ui/CanvasErrorBoundary';
 import { getTheme, themes } from '../../themeConfig';
 
+let globalHasWaved = false;
+
 /* ─────────────────────────────────────────────────────────────────────────────
    PHOTOREALISTIC ASTRONAUT MODEL COMPONENT (Zero-G Spacewalk EVA)
    ───────────────────────────────────────────────────────────────────────────── */
 function AstronautModel({ onReady, isLoaded }) {
   const group = useRef();
-  const [hasWaved, setHasWaved] = useState(false);
+  const [hasWaved, setHasWaved] = useState(globalHasWaved);
 
   const { scene, animations } = useGLTF('/models/astronaut.glb');
   const { actions } = useAnimations(animations, group);
@@ -82,6 +84,16 @@ function AstronautModel({ onReady, isLoaded }) {
   useEffect(() => {
     if (!actions || !isLoaded) return;
 
+    if (globalHasWaved) {
+      // Already waved during this session, just float immediately
+      if (actions['floating']) {
+        actions['floating'].reset().fadeIn(0.8).play();
+      } else if (actions['idle']) {
+        actions['idle'].reset().fadeIn(0.8).play();
+      }
+      return;
+    }
+
     if (actions['wave']) {
       const waveAction = actions['wave'];
 
@@ -99,6 +111,7 @@ function AstronautModel({ onReady, isLoaded }) {
         if (event.action === waveAction) {
           waveAction.fadeOut(0.8);
           setHasWaved(true);
+          globalHasWaved = true; // Mark globally so it doesn't wave again on scroll remount
           if (actions['floating']) {
             actions['floating'].reset().fadeIn(0.8).play();
           } else if (actions['idle']) {
@@ -111,9 +124,11 @@ function AstronautModel({ onReady, isLoaded }) {
       return () => mixer.removeEventListener('finished', handleFinish);
     } else if (actions['floating']) {
       setHasWaved(true);
+      globalHasWaved = true;
       actions['floating'].play();
     } else if (actions['idle']) {
       setHasWaved(true);
+      globalHasWaved = true;
       actions['idle'].play();
     }
   }, [actions, isLoaded]);
