@@ -340,11 +340,11 @@ export default function GlobalCosmicBackground({ currentTheme = 'orbital_sunrise
       style={{ backgroundColor: activeTheme.bgCore }}
     >
       <div 
-        className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[180px] opacity-[0.06] pointer-events-none transition-all duration-1000"
+        className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[180px] opacity-30 pointer-events-none transition-all duration-1000"
         style={{ backgroundColor: activeTheme.gasPrimary || activeTheme.rimLeft }}
       />
       <div 
-        className="absolute bottom-0 left-0 w-[700px] h-[700px] rounded-full blur-[180px] opacity-[0.04] pointer-events-none transition-all duration-1000"
+        className="absolute bottom-0 left-0 w-[700px] h-[700px] rounded-full blur-[180px] opacity-20 pointer-events-none transition-all duration-1000"
         style={{ backgroundColor: activeTheme.rimRight }}
       />
       <CanvasErrorBoundary fallback={<div className="fixed inset-0 z-0 transition-colors duration-1000" style={{ backgroundColor: activeTheme.bgCore }} />}>

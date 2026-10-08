@@ -107,15 +107,15 @@ export default function App() {
           ──────────────────────────────────────────────────────────── */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div 
-          className="absolute top-1/4 -left-48 w-[700px] h-[700px] rounded-full blur-[180px] opacity-20 transition-all duration-1000"
+          className="absolute top-1/4 -left-48 w-[700px] h-[700px] rounded-full blur-[180px] opacity-40 transition-all duration-1000"
           style={{ backgroundColor: activeTheme.rimLeft }}
         />
         <div 
-          className="absolute top-2/3 -right-48 w-[700px] h-[700px] rounded-full blur-[180px] opacity-20 transition-all duration-1000"
+          className="absolute top-2/3 -right-48 w-[700px] h-[700px] rounded-full blur-[180px] opacity-40 transition-all duration-1000"
           style={{ backgroundColor: activeTheme.rimRight }}
         />
         <div 
-          className="absolute top-1/2 left-1/3 w-[500px] h-[500px] rounded-full blur-[200px] opacity-10 transition-all duration-1000"
+          className="absolute top-1/2 left-1/3 w-[500px] h-[500px] rounded-full blur-[200px] opacity-30 transition-all duration-1000"
           style={{ backgroundColor: activeTheme.gasPrimary || activeTheme.rimLeft }}
         />
 

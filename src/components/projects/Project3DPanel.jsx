@@ -80,10 +80,11 @@ export default function Project3DPanel({
     setIsLowEnd(isMobile || isWeakCpu);
   }, []);
 
-  // Hook handles video loading, playbackRate = project.speed, visibility pauses, and poster fallback
+  // Hook handles video loading, playbackRate = project.speed, and poster fallback
+  // We pass true for visibility so the video is always playing and instantly available without delay
   const { texture, isReady } = useProjectVideo(
     activeProject,
-    isSectionVisible,
+    true, // always true to prevent delayed playback start
     prefersReducedMotion
   );
 
