@@ -18,7 +18,11 @@ export default function Navbar({
   // Close dropdown & mobile menu when clicking outside
   useEffect(() => {
     function handleClickOutside(e) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      // Close theme dropdown if clicked outside both desktop dropdown and mobile menu
+      if (
+        dropdownRef.current && !dropdownRef.current.contains(e.target) &&
+        mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)
+      ) {
         setThemeOpen(false);
       }
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
