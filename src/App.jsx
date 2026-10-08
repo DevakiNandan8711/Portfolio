@@ -29,6 +29,17 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Dynamically update the theme-color meta tag for mobile browsers
+  useEffect(() => {
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (!metaThemeColor) {
+      metaThemeColor = document.createElement('meta');
+      metaThemeColor.name = 'theme-color';
+      document.head.appendChild(metaThemeColor);
+    }
+    metaThemeColor.setAttribute('content', activeTheme.bgCore || '#020308');
+  }, [activeTheme]);
+
   // Track active section during scroll
   useEffect(() => {
     const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];

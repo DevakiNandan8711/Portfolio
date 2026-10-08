@@ -130,7 +130,7 @@ function AstronautModel({ onReady, isLoaded }) {
       // Real space movement has compound harmonic inertia (Lissajous curve) without
       // artificial hard clamping or rigid bobbing.
       // ─────────────────────────────────────────────────────────────────────────────
-      
+
       // 1. Dual-harmonic vertical drift (slow, majestic ~14s and ~28s orbital wave periods)
       const primaryFloat = Math.sin(t * 0.45) * 0.028;
       const secondaryFloat = Math.sin(t * 0.22) * 0.014;
@@ -693,7 +693,7 @@ export default function AstronautHero({
     <section id="home" ref={sectionRef} className="snap-section relative w-full h-screen flex flex-col md:flex-row items-center justify-between px-5 sm:px-10 md:px-16 pt-24 pb-12 sm:pt-28 sm:pb-16 md:py-0 overflow-hidden select-none font-sans">
 
       {/* ── 0. BREATHTAKING PHOTOREALISTIC ORBITAL VISTA BACKGROUND (With Continuous Zero-G Flight & Parallax) ── */}
-      <div 
+      <div
         className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0"
         style={{ perspective: '1200px' }}
       >
@@ -752,78 +752,78 @@ export default function AstronautHero({
       </div>
 
       {/* 2. Center 3D Viewport: Moving Stars + Floating 3D Astronaut in front of Vista */}
-      <div 
+      <div
         className="absolute inset-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing z-10"
         style={{ touchAction: 'pan-y' }}
       >
         {isVisible && (
           <CanvasErrorBoundary>
             <Canvas
-            camera={{ position: [0, -0.05, 4.5], fov: 45 }}
-            gl={{
-            antialias: true,
-            alpha: true,
-            powerPreference: 'default',
-            toneMapping: THREE.ACESFilmicToneMapping,
-            toneMappingExposure: 1.25
-          }}
-          dpr={[1, 1.2]}
-        >
-          {/* Spacewalk Zero-G Camera Float */}
-          <SpacewalkCameraRig />
+              camera={{ position: [0, -0.05, 4.5], fov: 45 }}
+              gl={{
+                antialias: true,
+                alpha: true,
+                powerPreference: 'default',
+                toneMapping: THREE.ACESFilmicToneMapping,
+                toneMappingExposure: 1.25
+              }}
+              dpr={[1, 1.2]}
+            >
+              {/* Spacewalk Zero-G Camera Float */}
+              <SpacewalkCameraRig />
 
-          {/* ── 3D COSMIC BACKGROUND FIELD BEHIND ASTRONAUT (Rotates when mouse moves) ── */}
-          <HeroCosmicBackgroundGroup>
-            {/* ── LIVE VISIBLY MOVING 3D STARS IN HERO VIEWPORT ── */}
-            <HeroDriftingStars />
+              {/* ── 3D COSMIC BACKGROUND FIELD BEHIND ASTRONAUT (Rotates when mouse moves) ── */}
+              <HeroCosmicBackgroundGroup>
+                {/* ── LIVE VISIBLY MOVING 3D STARS IN HERO VIEWPORT ── */}
+                <HeroDriftingStars />
 
-            {/* ── SINGLE-LINE ROCKET (Strictly 1 Time Every 5 Seconds) ── */}
-            <HeroShootingRockets />
+                {/* ── SINGLE-LINE ROCKET (Strictly 1 Time Every 5 Seconds) ── */}
+                <HeroShootingRockets />
 
-            {/* ── AUTHENTIC PASSING ORBITAL SATELLITES (Matching Uploaded Image 3) ── */}
-            <HomeSatellitesSwarm />
-          </HeroCosmicBackgroundGroup>
+                {/* ── AUTHENTIC PASSING ORBITAL SATELLITES (Matching Uploaded Image 3) ── */}
+                <HomeSatellitesSwarm />
+              </HeroCosmicBackgroundGroup>
 
-          {/* ── CINEMATIC PHOTOREALISTIC SPACE LIGHTING (High-Contrast Solar Key + Earthshine) ── */}
-          {/* Low ambient space fill preventing flat washout */}
-          <ambientLight intensity={0.35} color="#dbeafe" />
+              {/* ── CINEMATIC PHOTOREALISTIC SPACE LIGHTING (High-Contrast Solar Key + Earthshine) ── */}
+              {/* Low ambient space fill preventing flat washout */}
+              <ambientLight intensity={0.35} color="#dbeafe" />
 
-          {/* Direct Solar Radiation (Key light creating sharp, photorealistic spacesuit folds & shadows) */}
-          <directionalLight
-            position={[5, 7, 4]}
-            intensity={2.6}
-            color="#ffffff"
-            castShadow
-            shadow-bias={-0.0001}
-          />
+              {/* Direct Solar Radiation (Key light creating sharp, photorealistic spacesuit folds & shadows) */}
+              <directionalLight
+                position={[5, 7, 4]}
+                intensity={2.6}
+                color="#ffffff"
+                castShadow
+                shadow-bias={-0.0001}
+              />
 
-          {/* Earthshine Planetary Atmospheric Reflection (Subtle upward blue bounce light from the vista below) */}
-          <directionalLight
-            position={[-4, -5, 2]}
-            intensity={0.9}
-            color="#60a5fa"
-          />
+              {/* Earthshine Planetary Atmospheric Reflection (Subtle upward blue bounce light from the vista below) */}
+              <directionalLight
+                position={[-4, -5, 2]}
+                intensity={0.9}
+                color="#60a5fa"
+              />
 
-          {/* Cosmic Silhouette Rim Light */}
-          <pointLight
-            position={[3, 2, -3]}
-            color="#e0e7ff"
-            intensity={1.6}
-            distance={12}
-          />
+              {/* Cosmic Silhouette Rim Light */}
+              <pointLight
+                position={[3, 2, -3]}
+                color="#e0e7ff"
+                intensity={1.6}
+                distance={12}
+              />
 
-          {/* Specular Helmet Faceplate Fill */}
-          <pointLight
-            position={[-1, 1, 3]}
-            color="#ffffff"
-            intensity={0.7}
-            distance={8}
-          />
+              {/* Specular Helmet Faceplate Fill */}
+              <pointLight
+                position={[-1, 1, 3]}
+                color="#ffffff"
+                intensity={0.7}
+                distance={8}
+              />
 
-          {/* ── 3D PHOTOREALISTIC ASTRONAUT MODEL ── */}
-          <Suspense fallback={null}>
-            <AstronautModel onReady={onModelLoaded} isLoaded={isLoaded} />
-          </Suspense>
+              {/* ── 3D PHOTOREALISTIC ASTRONAUT MODEL ── */}
+              <Suspense fallback={null}>
+                <AstronautModel onReady={onModelLoaded} isLoaded={isLoaded} />
+              </Suspense>
             </Canvas>
           </CanvasErrorBoundary>
         )}
