@@ -96,6 +96,10 @@ function AstronautModel({ onReady, isLoaded }) {
 
     if (actions['wave']) {
       const waveAction = actions['wave'];
+      
+      // Set the flag IMMEDIATELY so if the user scrolls away before the wave finishes,
+      // it won't wave again on scroll back up.
+      globalHasWaved = true;
 
       // Cross-fade from idle into active wave greeting
       if (actions['floating']) actions['floating'].fadeOut(0.3);
@@ -111,7 +115,6 @@ function AstronautModel({ onReady, isLoaded }) {
         if (event.action === waveAction) {
           waveAction.fadeOut(0.8);
           setHasWaved(true);
-          globalHasWaved = true; // Mark globally so it doesn't wave again on scroll remount
           if (actions['floating']) {
             actions['floating'].reset().fadeIn(0.8).play();
           } else if (actions['idle']) {
@@ -749,9 +752,9 @@ export default function AstronautHero({
 
         {/* Cinematic deep space radial vignette */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none transition-colors duration-1000"
           style={{
-            background: 'radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(0,1,4,0.4) 75%, rgba(0,1,4,0.85) 100%)'
+            background: `radial-gradient(ellipse at 50% 45%, transparent 35%, ${activeTheme.bgCore}66 75%, ${activeTheme.bgCore}d9 100%)`
           }}
         />
       </div>
